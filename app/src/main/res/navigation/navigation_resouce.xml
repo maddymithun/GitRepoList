@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_resouce"
+    app:startDestination="@id/repositoryFragment">
+
+    <fragment
+        android:id="@+id/repositoryFragment"
+        android:name="com.learn.githubvisitor.fragment.RepositoryFragment"
+        android:label="fragment_repository"
+        app:popUpToInclusive="true"
+        tools:layout="@layout/fragment_repository">
+        <action
+            android:id="@+id/action_repositoryFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.learn.githubvisitor.fragment.DetailsFragment"
+        android:label="fragment_details"
+        app:popUpToInclusive="true"
+        tools:layout="@layout/fragment_details">
+
+
+    </fragment>
+</navigation>
