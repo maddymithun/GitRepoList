@@ -1,8 +1,7 @@
 package com.learn.githubvisitor.repository
 
+import com.example.example.GithubDetails
 import com.learn.githubvisitor.callback.RepositoryCallBack
-import com.learn.githubvisitor.model.GithubDetails
-import com.learn.githubvisitor.model.Item
 import com.walton.eapp.network.GitHubApiInterface
 import retrofit2.Call
 import retrofit2.Response

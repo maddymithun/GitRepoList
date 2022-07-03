@@ -1,13 +1,16 @@
-package com.learn.githubvisitor.model
+package com.example.example
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class License(
-    val key: String,
-    val name: String,
-    val node_id: String,
-    val spdx_id: String,
-    val url: String
-): Parcelable
+data class License (
+
+  @SerializedName("key"     ) var key    : String? = null,
+  @SerializedName("name"    ) var name   : String? = null,
+  @SerializedName("spdx_id" ) var spdxId : String? = null,
+  @SerializedName("url"     ) var url    : String? = null,
+  @SerializedName("node_id" ) var nodeId : String? = null
+
+):Parcelable

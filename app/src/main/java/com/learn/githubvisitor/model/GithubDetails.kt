@@ -1,7 +1,14 @@
-package com.learn.githubvisitor.model
+package com.example.example
 
-data class GithubDetails(
-    val incomplete_results: Boolean,
-    val items: List<Item>,
-    val total_count: Int
+import androidx.room.Entity
+import com.google.gson.annotations.SerializedName
+
+
+@Entity(tableName = "repository")
+data class GithubDetails (
+
+  @SerializedName("total_count"        ) var totalCount        : Int?             = null,
+  @SerializedName("incomplete_results" ) var incompleteResults : Boolean?         = null,
+  @SerializedName("items"              ) var items             : ArrayList<Item> = arrayListOf()
+
 )

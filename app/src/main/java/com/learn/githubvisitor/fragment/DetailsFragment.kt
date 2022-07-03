@@ -2,11 +2,10 @@ package com.learn.githubvisitor.fragment
 
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
+import com.example.example.Item
 import com.learn.githubvisitor.databinding.FragmentDetailsBinding
-import com.learn.githubvisitor.model.Item
 import com.walton.eapp.base.BaseFragmentWithBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -19,13 +18,14 @@ class DetailsFragment @Inject constructor() :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        onLoadingVm().updateToolbar("Github Rpository Detail")
         if (requireArguments().containsKey("detailsowner")) {
             ownderDetails= arguments?.getParcelable<Item>("detailsowner")
             Glide.with(this)
-                .load(ownderDetails!!.owner.avatar_url)
+                .load(ownderDetails!!.owner!!.avatarUrl)
                 .into(binding.profileImage)
-            binding.tvName.text= ownderDetails!!.owner.login
-            binding.tvLastUpdateDate.text= dateConverter(ownderDetails!!.updated_at)
+            binding.tvName.text= ownderDetails!!.owner!!.login
+            binding.tvLastUpdateDate.text= ownderDetails!!.updatedAt?.let { dateConverter(it) }
             binding.tvRepoDescription.text= ownderDetails!!.description
         }
     }

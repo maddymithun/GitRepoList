@@ -2,9 +2,8 @@ package com.learn.githubvisitor.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.example.GithubDetails
 import com.learn.githubvisitor.callback.RepositoryCallBack
-import com.learn.githubvisitor.model.GithubDetails
-import com.learn.githubvisitor.model.Item
 import com.learn.githubvisitor.repository.GithubRepositoryListRepository
 import com.walton.eapp.utils.ApiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel

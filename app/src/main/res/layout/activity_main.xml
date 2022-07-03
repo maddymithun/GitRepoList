@@ -35,7 +35,7 @@
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:textSize="18sp"
-            tools:text="Toolbar Title" />
+            tools:text="@string/repository_list" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/back_btn"

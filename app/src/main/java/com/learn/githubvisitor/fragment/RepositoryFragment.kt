@@ -1,32 +1,37 @@
 package com.learn.githubvisitor.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.example.example.GithubDetails
+import com.example.example.Item
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.learn.githubvisitor.R
 import com.learn.githubvisitor.adapter.RepositoryAdapter
 import com.learn.githubvisitor.config.CheckNetworkStatus
 import com.learn.githubvisitor.databinding.FragmentRepositoryBinding
-import com.learn.githubvisitor.model.GithubDetails
-import com.learn.githubvisitor.model.Item
-import com.learn.githubvisitor.model.Owner
 import com.learn.githubvisitor.utils.SendData
 import com.learn.githubvisitor.viewModel.RepositoryViewModel
 import com.walton.eapp.base.BaseFragmentWithBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.lang.reflect.Type
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class RepositoryFragment @Inject constructor() :
     BaseFragmentWithBinding<FragmentRepositoryBinding>(FragmentRepositoryBinding::inflate) ,SendData{
     val repolistViewModel: RepositoryViewModel by viewModels()
+    val gson = Gson()
+     var githubDetails= listOf<GithubDetails>()
     @Inject
     lateinit var adapter: RepositoryAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +47,9 @@ class RepositoryFragment @Inject constructor() :
                 onSnackBarVm().setMSg("Please Connect Internet Connection")
             }
         })
+
         getLivedata()
+
     }
 
 
@@ -55,8 +62,22 @@ class RepositoryFragment @Inject constructor() :
                 binding.recylerRepositoryList.adapter = adapter
                 it?.let { it1 -> adapter.sendRepositoryList(it.items,this) }
                 adapter.notifyDataSetChanged()
+                val companiesString = gson.toJson(it)
+                try {
+
+                    val type: Type =
+                        object : TypeToken<GithubDetails>() {}.type
+                    githubDetails =
+                        gson.fromJson<List<GithubDetails>>(companiesString, type)
+                    Log.e("gitdetails",githubDetails.toString())
+                }catch (e:Exception){
+
+                }
+
             }
         })
+
+
     }
 
     override fun onClick(itme: Item) {

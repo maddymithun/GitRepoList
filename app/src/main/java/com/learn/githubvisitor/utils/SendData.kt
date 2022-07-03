@@ -1,8 +1,6 @@
 package com.learn.githubvisitor.utils
 
-import com.learn.githubvisitor.model.GithubDetails
-import com.learn.githubvisitor.model.Item
-import com.learn.githubvisitor.model.Owner
+import com.example.example.Item
 
 interface SendData {
     fun onClick(item: Item)

@@ -3,9 +3,8 @@ package com.learn.githubvisitor.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.example.Item
 import com.learn.githubvisitor.databinding.RepoItemListBinding
-import com.learn.githubvisitor.model.GithubDetails
-import com.learn.githubvisitor.model.Item
 import com.learn.githubvisitor.utils.SendData
 import javax.inject.Inject
 
@@ -27,7 +26,7 @@ class RepositoryAdapter @Inject constructor() : RecyclerView.Adapter<TaskViewRep
     override fun onBindViewHolder(holder: TaskViewReportHolder, position: Int) {
         val reportList = repoList[position]
         holder.binding.apply {
-            tvTitleRepository.text=reportList.full_name
+            tvTitleRepository.text=reportList.fullName
             tvDescription.text=reportList.description
 
         }

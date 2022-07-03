@@ -1,7 +1,6 @@
 package com.learn.githubvisitor.callback
 
-import com.learn.githubvisitor.model.GithubDetails
-import com.learn.githubvisitor.model.Item
+import com.example.example.GithubDetails
 
 
 interface RepositoryCallBack {
