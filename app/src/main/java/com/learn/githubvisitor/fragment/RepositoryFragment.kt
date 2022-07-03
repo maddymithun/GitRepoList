@@ -36,7 +36,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class RepositoryFragment @Inject constructor() :
     BaseFragmentWithBinding<FragmentRepositoryBinding>(FragmentRepositoryBinding::inflate),
-    SendData,OffSendData {
+    SendData, OffSendData {
     val repolistViewModel: RepositoryViewModel by viewModels()
     var githubRepository: GitHubDBRepository? = null
     lateinit var githubViewmodel: GithubViewModel
@@ -44,6 +44,7 @@ class RepositoryFragment @Inject constructor() :
 
     @Inject
     lateinit var adapter: RepositoryAdapter
+
     @Inject
     lateinit var offLineAdapter: OffLineAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -113,11 +114,11 @@ class RepositoryFragment @Inject constructor() :
         })
         githubViewmodel.listRepo?.observe(this, Observer {
             binding.progressBar.visibility = View.GONE
-            if (it.size>0){
+            if (it.size > 0) {
                 binding.recylerRepositoryList.adapter = offLineAdapter
-                offLineAdapter.sendOffline(it,this@RepositoryFragment)
+                offLineAdapter.sendOffline(it, this@RepositoryFragment)
                 offLineAdapter.notifyDataSetChanged()
-                Log.e("data check",it.toString())
+                Log.e("data check", it.toString())
             }
         })
 

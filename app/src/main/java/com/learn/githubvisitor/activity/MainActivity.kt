@@ -18,8 +18,8 @@ class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
-
     private val loadingBarViewModel: ProgressBarHandleViewModel by viewModels()
+
     private val showSnackBarViewModel: ShowSnackBarViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,5 +28,12 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+        loadingBarViewModel.titleUpdateLiveData.observe(this) {
+
+            binding.toolbarTitle.text = it
+
+        }
     }
+
+
 }
