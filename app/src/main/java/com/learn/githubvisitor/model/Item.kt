@@ -1,11 +1,11 @@
 package com.example.example
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
 import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
-import com.learn.githubvisitor.utils.ProfileTypeConverter
 import kotlinx.parcelize.Parcelize
-
 @Parcelize
 data class Item (
   @SerializedName("id"                          ) var id                       : Int?              = null,
@@ -13,7 +13,7 @@ data class Item (
   @SerializedName("name"                        ) var name                     : String?           = null,
   @SerializedName("full_name"                   ) var fullName                 : String?           = null,
   @SerializedName("private"                     ) var private                  : Boolean?          = null,
-  @SerializedName("owner"                       ) var owner                    : Owner?            = Owner(),
+  @ColumnInfo(name= "owner"                       ) var owner                    : Owner?            = Owner(),
   @SerializedName("html_url"                    ) var htmlUrl                  : String?           = null,
   @SerializedName("description"                 ) var description              : String?           = null,
   @SerializedName("fork"                        ) var fork                     : Boolean?          = null,

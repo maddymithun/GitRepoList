@@ -6,6 +6,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.example.example.Item
 import com.learn.githubvisitor.databinding.FragmentDetailsBinding
+import com.learn.githubvisitor.model.GitHubDB
 import com.walton.eapp.base.BaseFragmentWithBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -15,6 +16,7 @@ import javax.inject.Inject
 class DetailsFragment @Inject constructor() :
     BaseFragmentWithBinding<FragmentDetailsBinding>(FragmentDetailsBinding::inflate)  {
     private var ownderDetails: Item? = null
+    private var gitHubDB: GitHubDB? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,6 +29,14 @@ class DetailsFragment @Inject constructor() :
             binding.tvName.text= ownderDetails!!.owner!!.login
             binding.tvLastUpdateDate.text= ownderDetails!!.updatedAt?.let { dateConverter(it) }
             binding.tvRepoDescription.text= ownderDetails!!.description
+        }else{
+            gitHubDB= arguments?.getParcelable<GitHubDB>("offline")
+            Glide.with(this)
+                .load(gitHubDB!!.imageUrl)
+                .into(binding.profileImage)
+            binding.tvName.text= gitHubDB!!.name
+            binding.tvLastUpdateDate.text= dateConverter(gitHubDB!!.date)
+            binding.tvRepoDescription.text= gitHubDB!!.descritption
         }
     }
     fun dateConverter(date:String):String{

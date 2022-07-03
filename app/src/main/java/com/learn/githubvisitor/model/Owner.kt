@@ -1,10 +1,12 @@
 package com.example.example
 
 import android.os.Parcelable
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
+@Entity
 data class Owner (
 
   @SerializedName("login"               ) var login             : String?  = null,
